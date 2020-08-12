@@ -1,19 +1,3 @@
-var ParagraphTag;
-(function (ParagraphTag) {
-    var ParagraphTagFunctions = /** @class */ (function () {
-        function ParagraphTagFunctions() {
-        }
-        ParagraphTagFunctions.prototype.setInnerHtml = function (element, innerHtml) {
-            element.innerText = innerHtml;
-        };
-        return ParagraphTagFunctions;
-    }());
-    function Load() {
-        window["ParagraphTagFunctions"] = new ParagraphTagFunctions();
-    }
-    ParagraphTag.Load = Load;
-})(ParagraphTag || (ParagraphTag = {}));
-ParagraphTag.Load();
 var Canvas;
 (function (Canvas) {
     var CanvasInteropFunctions = /** @class */ (function () {
@@ -95,4 +79,20 @@ var Canvas;
     Canvas.Load = Load;
 })(Canvas || (Canvas = {}));
 Canvas.Load();
+var ParagraphTag;
+(function (ParagraphTag) {
+    var ParagraphTagFunctions = /** @class */ (function () {
+        function ParagraphTagFunctions() {
+        }
+        ParagraphTagFunctions.prototype.setInnerHtml = function (element, innerHtml) {
+            element.innerText = innerHtml;
+        };
+        return ParagraphTagFunctions;
+    }());
+    function Load() {
+        window["ParagraphTagFunctions"] = new ParagraphTagFunctions();
+    }
+    ParagraphTag.Load = Load;
+})(ParagraphTag || (ParagraphTag = {}));
+ParagraphTag.Load();
 //# sourceMappingURL=main.js.map

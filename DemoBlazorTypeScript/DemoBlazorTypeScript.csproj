@@ -25,6 +25,11 @@
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
+    <ItemGroup Condition="'$(DesignTimeBuild)' != 'true'">
+	    <Content Remove="wwwroot\index.html" />
+	    <Content Update="wwwroot\index.published.html" Link="wwwroot\index.html" />
+    </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
