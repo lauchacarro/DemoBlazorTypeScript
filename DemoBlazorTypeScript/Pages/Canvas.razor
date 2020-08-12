@@ -1,0 +1,40 @@
+﻿@using DemoBlazorTypeScript.Services.Interops
+@inject ICanvasInteropService canvasJsRuntime
+@page "/canvas"
+
+<h3>Canvas</h3>
+<h5>Ctrl + V for paste into canvas</h5>
+
+
+<canvas id="mycanvas" @ref="CanvasReference" />
+
+@if (!string.IsNullOrWhiteSpace(base64))
+{
+    <h3>Canvas Base64</h3>
+    <p>
+        @base64
+    </p>
+}
+
+@code {
+    ElementReference CanvasReference;
+    string base64 = default;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var dotNetReference = DotNetObjectReference.Create(this);
+
+            await canvasJsRuntime.AddPasteEventListener(CanvasReference, dotNetReference);
+
+        }
+    }
+
+    [JSInvokable("CanvasOnload")]
+    public async Task CanvasOnload()
+    {
+        base64 = await canvasJsRuntime.GetCanvasBase64(CanvasReference);
+        StateHasChanged();
+    }
+}

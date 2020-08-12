@@ -1,0 +1,22 @@
+﻿@page "/counter"
+@using DemoBlazorTypeScript.Services.Interops
+@inject IParagraphInteropService paragraphInteropService
+
+
+<h1>Counter</h1>
+
+<p @ref="currentCountElement">Current count: 0</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private ElementReference currentCountElement;
+
+    private int currentCount = 0;
+
+    private async Task IncrementCount()
+    {
+        currentCount++;
+        await paragraphInteropService.SetInnerHtml(currentCountElement, $"Current count: {currentCount}");
+    }
+}
